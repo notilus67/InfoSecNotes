@@ -1,2 +1,9 @@
-# MScInfoSec
-Course notes &amp; contents in my MSc 
+# InfoSecNotes
+
+## MSc 
+
+Course notes & contents in my MSc 
+
+## Others
+
+to be updated 
