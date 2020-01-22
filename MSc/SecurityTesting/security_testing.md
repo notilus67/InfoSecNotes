@@ -5,7 +5,9 @@
 - network security for IoT
 - applications in cyber-criminal investigation
 
-# Open Resources
+# 1 Lecture 1 
+
+## 1.1 Open Resources
 
 1. ssh into linux.cim.rhul.ac.uk
     账号同no-machine
@@ -16,7 +18,7 @@
 
 3. https://media.ccc.de/c/36c3
 
-# Stages (仅供参考)
+## 1.2 Stages (仅供参考)
 
 - Target scoping
 
@@ -38,7 +40,7 @@
 
 - Documentation and reporting
 
-# Methodology
+## 1.3 Methodology
 > 有点兴趣但是**没时间**全看啊，至少面试前把OWASP系列重新看一百年吧
 
 > 更了解对象; 可重复的过程; 渗透测试不像攻击，客户需要划定范围使其模仿恶意意图，否则鲜有价值
@@ -79,7 +81,7 @@
 - OSSTMM: Open Source Security Testing Methodology Manual (2010)
     - 有个security量化计算公式
 
-# Further
+## 1.4 Further
 
 讨论test和审计的区别；讨论黑白灰盒测试的区别.
 
@@ -88,7 +90,37 @@ Security by Penetration Testing, Part I.2: Penetration Testing Methodology
 
 [读公开的pentest报告](https://github.com/juliocesarfort/public-pentesting-reports/tree/master/OffensiveSecurity)
 
-# Wordlist
+# Lecture 2 Information Gathering 
+
+- Passive（接触目标) 
+- Semi-passive（假装正常流量）
+- active(直接连接)
+
+## 2.1 潜在interest
+
+域名 子网 系统架构 可达IP 网络协议 running服务 系统枚举 WAF/IDS/IPS 访问控制 远程访问
+
+## 2.2 具体策略（不全）
+
+GOOGLE的高级搜索(待补) site filetype 
+
+[Google Hacking db](https://www.exploit-db.com/google-hacking-database), [教程](https://www.blackhat.com/presentations/bh-europe-05/BH_EU_05-Long.pdf)
+
+DNS部分：基本略过
+ - WHOIS用的是TCP 43端口
+ - dns的区域传输只准从primary server到secondary server
+ - rDNS(reverse dns)主要是防垃圾邮件用 
+
+host发现
+ - `nmap -sn 192.168.1.0/24`
+ - IP ping`nmap -sn --disable-arp-ping -P0 192.168.1.0/24`
+ - TCP SYN Ping(其他还有TCP ACK Ping、UDP Ping等) `nmap -sn --disable-arp-ping -PS80 10.13.37.0/24`
+ - OS识别 
+ - [You can -j REJECT but you can not hide: Global
+scanning of the IPv6 Internet](https://media.ccc.de/v/33c3-8061-you_can_-j_reject_but_you_can_not_hide_global_scanning_of_the_ipv6_internet)
+ - traceroute/tcptraceroute/ping -R命令
+ 
+ # Wordlist
 
 Double blind: 受验双方都不清楚详情, black box通常是其一环
 

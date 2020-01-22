@@ -1,8 +1,10 @@
 # InfoSecNotes
 
+I think it's unnecessary to put all these notes in my blog. So I put them here instead. 
+
 ## MSc 
 
-Course notes & contents in my MSc 
+Course notes during my postgraduate in Royal Holloway. 
 
 ## Others
 

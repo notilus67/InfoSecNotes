@@ -57,19 +57,18 @@ Passive, on-path|$\color{green}{√}$|$\color{red}{×}$|$\color{red}{×}$
 > - the nature of the threats （威胁属性）
 
 > **总结2**：使用分组交换意味着可能会引入error，由此我们需要的下列网络服务: 
-    > - Addressing 寻址
-    > - Forwarding 转发
-    > - Detection of errors due to accidental modification (weak integrity) 对意外的查错
-    > - Reliable delivery 可靠性
-    > - In-order delivery 顺序
+> - Addressing 寻址
+> - Forwarding 转发
+> - Detection of errors due to accidental modification (weak integrity) 对意外的查错
+> - Reliable delivery 可靠性
+> - In-order delivery 顺序
 
 
 > **总结3**：使用shared network links或internetworks，需要以下安全服务：
-    > - Confidentiality 机密性
-    > - Detection of errors due to deliberate modification 
-    (strong integrity) 对恶意的查错
-    > - Detection of message replays 重放检测
-    > - Confirmation of data orign (authentication) 消息来源验证
+> - Confidentiality 机密性
+> - Detection of errors due to deliberate modification (strong integrity) 对恶意的查错
+> - Detection of message replays 重放检测
+> - Confirmation of data orign (authentication) 消息来源验证
 
 > **总结4**：总结2和总结3即为总结1提到的Network Security提出的缘由，这些services通过定义部署在网络上电脑的软件/硬件中的**协议**来实现。
 
@@ -112,11 +111,11 @@ A **computer network** is a collection of computers that share a communication i
     - unicast(单点) message V.S. broadcast message
 
 - 扩展网络的设备
-    - Hub(集线器) 物理层 集合节点 无碰撞检测 （纯转发）
-    - Repeater(中继器) 物理层 相同的网络的互联 扩大传输距离 （纯转发）
-    - Switch(交换机) 数据链路层 多口 上位网桥
-    - Bridge(网桥) 数据链路层 根据MAC转发帧 只有两个端口
-    - Router(路由器) 网络层 读取ip 计算路径
+    - Hub(集线器) 1物理层 集合节点 无碰撞检测 （纯转发）集线器也是一种中继器
+    - Repeater(中继器) 1物理层 相同的网络的互联 扩大传输距离 （纯转发）
+    - Switch(交换机) 2数据链路层 多口 上位网桥
+    - Bridge(网桥) 2数据链路层 根据MAC转发帧 只有两个端口
+    - Router(路由器) 3网络层 读取ip 计算路径(路由表协议：BGP OSPF RIP)
 
 - Link Encryption
     - 有线： 物理保护
@@ -149,10 +148,14 @@ A **computer network** is a collection of computers that share a communication i
     - A **network frame** is a "container" for a fixed number of bits.
     - 网络帧 = 应用数据 + 传输用信息(链路层的硬件地址;网络层的网络地址;传输层的端口号) 
     - 每部分的frame结构不一，比如TCP/UDP头16bits - 端口号; IP header
+        - 端口号 1~1023; 1024~5000
 
 
 - OSI Layers (Layer - Unit - Purpose - Examples) 
-
+    - Link layer
+        - wifi frame 和 ethernet frame同属1级(link layer)
+        - 该层的bad密码学协议: WEP WPA WPA2
+        - VLAN hopping 
 - 网络协议实施
     - A **protocol** defines what the inputs and outputs of a processing step should be. 
     - 网络软件构造网络帧
@@ -179,8 +182,10 @@ A **computer network** is a collection of computers that share a communication i
     - 缓存溢出 inappropriate随机数生成
 
 - 来自基础设施协议:
-    - 名称解析: ARP(ip2mac) DNS(NS2ip)
+    - 名称解析: ARP(ip2mac) DNS(Name2ip) rDNS(ip2Name)
     - 路由协议: OSPF BGP RIP
+        - https://dyn.com/blog/shutting-down-the-bgp-hijack-factory/
+        - https://www.internetsociety.org/blog/2018/04/amazons-route-53-bgp-hijack/
 
 - 应用层协议: Announcement/Query-response
 
@@ -249,7 +254,11 @@ A **computer network** is a collection of computers that share a communication i
 
 ### 4.1.2 封装顺序
 
-<img src="/images/orderOfEncapsulation.png" width="auto">
+<img src="images/orderOfEncapsulation.png" width="auto">
+
+<img src="images/dataEncapsulation.png" width="auto">
+
+<img src="images/peerCommunication.png" width="auto">
 
 选用不同的安全服务，处理流程不同; 仅供参考，参见课件159/836。
 
@@ -338,15 +347,13 @@ A **computer network** is a collection of computers that share a communication i
 - 私有IPv4地址 
     - 可重复使用的IP地址, 不可转发到不同的network
     - 10.0.0.0/8
-    - 172.16.0.0/12
+    - 172.16.0.0/12 ~ 172.31.255.255
     - 192.168.0.0/16
 
 ## 5.2 构建转发表
 
 - 交换机/网桥: 硬件地址; 最简单的搭建方式是监视网络流量，如果没有Dest Addr的入口，交换机会广播到所有接口(因为是交换机，同network，不同network link的所有host都会收到该信息)
 - 路由器: 其他网络的net-id
-- 
-- 
 
 ## 5.3 IP数据包重写
 
