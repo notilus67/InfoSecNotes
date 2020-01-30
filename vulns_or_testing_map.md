@@ -82,7 +82,7 @@ https://github.com/FortyNorthSecurity/EyeWitness
 
 (2) 杂记
 - [OWASP XSS过滤器绕过速查表](https://owasp.org/www-community/xss-filter-evasion-cheatsheet)
-- httpOnly的有无: 不让脚本访问cookie
+- Cookie-httpOnly的有无: 不让任何API/脚本访问document.cookie
     - 无，可以试试alert document.cookie document.domain
     - 有，其他方式bypass [参考](https://www.freebuf.com/articles/web/129384.html)
 - SOP(same-origin policy): 协议 主机 端口(http和https非同源)
@@ -104,3 +104,27 @@ https://github.com/FortyNorthSecurity/EyeWitness
 - 4. 对输出的数据也要检查，数据库里的值有可能会在一个大网站的多处都有输出，即使在输入做了编码等操作，在各处的输出点时也要进行安全检查。
 
 ### 1.3 SSRF 
+
+### 0 Command Injection
+
+(3) 防护: 不在应用层调用OS命令，否则使用白名单验证输入
+
+### 0 L|R FI: Local and Remote File Inclusion
+
+(1) 原理
+
+- include 执行一个文件为php代码
+- (optional)借助PHP Wrappers/Filters的LRFI
+
+(2) 
+
+(3) 防护
+
+- 对PHP Wrappers/Filters进行限制，关闭eval()
+- 禁用Allow_url_fopen/Allow_url_include
+- 处理 / . %00
+- 配置open_basedir(允许打开的目录) - 使用fopen()或file_get_contents()等时会进行文件位置检查
+- 检查/tmp目录
+- 使用硬编码的include，不允许动态获取文件名
+
+

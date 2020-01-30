@@ -37,4 +37,14 @@ int main(){
     - 使用Connect(Android API Call)的恶意程序不同于传统蓝牙(?)，无scan，可以隐藏要求的权限(?)
         - 使用BLE传输, 应用数据对所有应用可见，所以需要应用层加密
 
-- 
+## Lecture 2: Web Security
+
+- 介绍了CWE OWASP top 10
+- 介绍了HTTP URL构成
+- <img src="images/web_infrastructure.png.png" width="auto">
+- 命令执行: system() exec() popen() in PHP
+- [靶场：OWASP Mutillidae II](http://www.ucbug.com/soft/130762.html)
+- [靶场2: OWASP-BWA](https://subscription.packtpub.com/book/networking_and_servers/9781784390303/1/01lvl1sec19/installing-owasp-bwa)
+- shell shock: 攻击bash, 在http header里加payload
+    - get Reverse Shell(待调查)
+- 常见Web漏洞种类见主页

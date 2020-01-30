@@ -120,6 +120,46 @@ host发现
 scanning of the IPv6 Internet](https://media.ccc.de/v/33c3-8061-you_can_-j_reject_but_you_can_not_hide_global_scanning_of_the_ipv6_internet)
  - traceroute/tcptraceroute/ping -R命令
  
+# Lecuture 3 Enumerating Targets & Vulnerability Mapping
+
+## 3.1 Port Scan
+
+- Port Scan 有一种情况是被blocked, (firewall / packet filter), 用nmap TCP ACK scan的话大概还是能猜出来
+
+- Detection & Prevention
+    - Network Intrusion Detection System: 部分扫描选项可以pass
+    - Firewalls
+        - Network: basic packet filtering (stateless)
+        - Net/Trans: stateful packet filtering
+        - Transport: Circuit Level Gateway / Proxy
+        - Application: Application layer firewalls
+
+Skype的p2p语音传输: UDP "session"
+
+**待调查:**Avoid firewall: [Loose Source and Record Route](https://security.stackexchange.com/questions/33313/does-loose-source-and-record-route-drop-the-source-address/33334#33334)
+
+nmap -sF / -sA 结合FIN和ACK扫描，找
+
+- 其他工具: ZMap Masscan
+
+- nc/telnet xxx.xxx.xx.xx 22 
+
+## 3.2 Service
+
+FTP(21) Telnet(23) SMTP(25) TFTP(69) 未加密
+
+Finger(79) 未授权
+
+DNS(53)没打补丁
+
+SNMP(UDP 161) 信息泄露 默认密码
+
+SMB 枚举恭喜那个文件，略 
+
+## 3.3 自动扫描器
+
+[Nessus](https://zh-cn.tenable.com/products/nessus/nessus-essentials?tns_redirect=true) OpenVAS 
+
  # Wordlist
 
 Double blind: 受验双方都不清楚详情, black box通常是其一环
